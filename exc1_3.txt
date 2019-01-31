@@ -1,0 +1,37 @@
+java -jar ../server.jar -l ../levels/SAD2.lvl -c "java searchclient.SearchClient -dfs" -g 150 -t 300
+
+* Runner starting
+
+[Client said] SearchClient initializing. I am sending this using the error output stream.
+[Client said] Search starting with strategy Depth-first Search.
+[Client said] #Explored:  1,000, #Frontier:  1,780, #Generated:  2,780, Time: 0.23 s 	[Used: 82.66 MB, Free: 398.84 MB, Alloc: 481.50 MB, MaxAlloc: 7118.50 MB]
+[Client said] #Explored:  2,000, #Frontier:  3,889, #Generated:  5,889, Time: 0.40 s 	[Used: 172.00 MB, Free: 435.50 MB, Alloc: 607.50 MB, MaxAlloc: 7118.50 MB]
+[Client said] #Explored:  3,000, #Frontier:  5,957, #Generated:  8,957, Time: 0.54 s 	[Used: 307.20 MB, Free: 300.30 MB, Alloc: 607.50 MB, MaxAlloc: 7118.50 MB]
+[Client said] #Explored:  4,000, #Frontier:  7,806, #Generated: 11,806, Time: 0.98 s 	[Used: 342.99 MB, Free: 643.01 MB, Alloc: 986.00 MB, MaxAlloc: 7118.50 MB]
+[Client said] #Explored:  5,000, #Frontier:  9,656, #Generated: 14,656, Time: 1.11 s 	[Used: 468.46 MB, Free: 517.54 MB, Alloc: 986.00 MB, MaxAlloc: 7118.50 MB]
+[Client said] #Explored:  6,000, #Frontier: 11,690, #Generated: 17,690, Time: 1.26 s 	[Used: 515.88 MB, Free: 541.12 MB, Alloc: 1057.00 MB, MaxAlloc: 7118.50 MB]
+[Client said] 
+[Client said] Summary for Depth-first Search
+[Client said] Found solution of length 5781
+[Client said] #Explored:  6,799, #Frontier: 13,263, #Generated: 20,062, Time: 1.37 s 	[Used: 618.59 MB, Free: 438.41 MB, Alloc: 1057.00 MB, MaxAlloc: 7118.50 MB]
+success
+
+* Runner completed
+  - Press enter to start over, Control+C to exit
+  - Modifications to level and client will be reflected when starting over
+jonas@jonas-XPS-15-9550:~/git_private/AI-Graph-Search/searchclient_java$ java -jar ../server.jar -l ../levels/SAD1.lvl -c "java searchclient.SearchClient -dfs" -g 150 -t 300
+
+* Runner starting
+
+[Client said] SearchClient initializing. I am sending this using the error output stream.
+[Client said] Search starting with strategy Depth-first Search.
+[Client said] 
+[Client said] Summary for Depth-first Search
+[Client said] Found solution of length 27
+[Client said] #Explored:     44, #Frontier:     22, #Generated:     66, Time: 0.02 s 	[Used: 7.56 MB, Free: 473.94 MB, Alloc: 481.50 MB, MaxAlloc: 7118.50 MB]
+success
+
+* Runner completed
+  - Press enter to start over, Control+C to exit
+  - Modifications to level and client will be reflected when starting over
+

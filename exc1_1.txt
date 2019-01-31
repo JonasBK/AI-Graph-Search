@@ -1,0 +1,17 @@
+java -jar ../server.jar -l ../levels/SAD1.lvl -c "java searchclient.SearchClient" -g 150 -t 300
+
+* Runner starting
+
+[Client said] SearchClient initializing. I am sending this using the error output stream.
+[Client said] Defaulting to BFS search. Use arguments -bfs, -dfs, -astar, -wastar, or -greedy to set the search strategy.
+[Client said] Search starting with strategy Breadth-first Search.
+[Client said] 
+[Client said] Summary for Breadth-first Search
+[Client said] Found solution of length 19
+[Client said] #Explored:     78, #Frontier:      2, #Generated:     80, Time: 0.04 s 	[Used: 12.60 MB, Free: 468.90 MB, Alloc: 481.50 MB, MaxAlloc: 7118.50 MB]
+success
+
+* Runner completed
+  - Press enter to start over, Control+C to exit
+  - Modifications to level and client will be reflected when starting over
+

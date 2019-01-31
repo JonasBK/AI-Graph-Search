@@ -1,0 +1,12 @@
+java -jar ../server.jar -l ../levels/SAD2.lvl -c "java searchclient.SearchClient" -g 150 -t 300
+
+[Client said] #Explored: 161,406, #Frontier: 59,544, #Generated: 220,950, Time: 94.19 s 	[Used: 6228.84 MB, Free: 889.66 MB, Alloc: 7118.50 MB, MaxAlloc: 7118.50 MB]
+[Client said] Unable to solve level.
+[MainLoop RuntimeException] Unable to read next action from client
+
+* Runner completed
+  - Press enter to start over, Control+C to exit
+  - Modifications to level and client will be reflected when starting over
+
+3 instead of 1 box to push around in the map.
+How does that effect BFS?

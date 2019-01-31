@@ -1,0 +1,60 @@
+jonas@jonas-XPS-15-9550:~/git_private/AI-Graph-Search/searchclient_java$ java -jar ../server.jar -l ../levels/friendofDFS.lvl -c "java searchclient.SearchClient" -g 150 -t 300
+
+* Runner starting
+
+[Client said] SearchClient initializing. I am sending this using the error output stream.
+[Client said] Defaulting to BFS search. Use arguments -bfs, -dfs, -astar, -wastar, or -greedy to set the search strategy.
+[Client said] Search starting with strategy Breadth-first Search.
+[Client said] #Explored:  1,000, #Frontier:  2,810, #Generated:  3,810, Time: 0.33 s 	[Used: 137.55 MB, Free: 343.95 MB, Alloc: 481.50 MB, MaxAlloc: 7118.50 MB]
+[Client said] #Explored:  2,000, #Frontier:  5,324, #Generated:  7,324, Time: 0.61 s 	[Used: 277.28 MB, Free: 330.22 MB, Alloc: 607.50 MB, MaxAlloc: 7118.50 MB]
+[Client said] #Explored:  3,000, #Frontier:  7,358, #Generated: 10,358, Time: 1.07 s 	[Used: 327.13 MB, Free: 538.37 MB, Alloc: 865.50 MB, MaxAlloc: 7118.50 MB]
+[Client said] #Explored:  4,000, #Frontier:  9,550, #Generated: 13,550, Time: 1.26 s 	[Used: 502.79 MB, Free: 362.71 MB, Alloc: 865.50 MB, MaxAlloc: 7118.50 MB]
+[Client said] #Explored:  5,000, #Frontier: 11,335, #Generated: 16,335, Time: 1.50 s 	[Used: 555.16 MB, Free: 395.84 MB, Alloc: 951.00 MB, MaxAlloc: 7118.50 MB]
+[Client said] #Explored:  6,000, #Frontier: 13,342, #Generated: 19,342, Time: 2.09 s 	[Used: 559.33 MB, Free: 992.17 MB, Alloc: 1551.50 MB, MaxAlloc: 7118.50 MB]
+[Client said] #Explored:  7,000, #Frontier: 14,886, #Generated: 21,886, Time: 2.34 s 	[Used: 720.30 MB, Free: 831.20 MB, Alloc: 1551.50 MB, MaxAlloc: 7118.50 MB]
+[Client said] #Explored:  8,000, #Frontier: 16,347, #Generated: 24,347, Time: 2.60 s 	[Used: 890.20 MB, Free: 661.30 MB, Alloc: 1551.50 MB, MaxAlloc: 7118.50 MB]
+[Client said] #Explored:  9,000, #Frontier: 18,228, #Generated: 27,228, Time: 2.96 s 	[Used: 807.48 MB, Free: 895.02 MB, Alloc: 1702.50 MB, MaxAlloc: 7118.50 MB]
+[Client said] #Explored: 10,000, #Frontier: 20,193, #Generated: 30,193, Time: 3.22 s 	[Used: 976.10 MB, Free: 726.40 MB, Alloc: 1702.50 MB, MaxAlloc: 7118.50 MB]
+[Client said] #Explored: 11,000, #Frontier: 22,482, #Generated: 33,482, Time: 3.53 s 	[Used: 950.19 MB, Free: 778.81 MB, Alloc: 1729.00 MB, MaxAlloc: 7118.50 MB]
+[Client said] #Explored: 12,000, #Frontier: 24,620, #Generated: 36,620, Time: 3.80 s 	[Used: 1143.89 MB, Free: 585.11 MB, Alloc: 1729.00 MB, MaxAlloc: 7118.50 MB]
+[Client said] #Explored: 13,000, #Frontier: 26,378, #Generated: 39,378, Time: 4.01 s 	[Used: 1312.33 MB, Free: 416.67 MB, Alloc: 1729.00 MB, MaxAlloc: 7118.50 MB]
+[Client said] #Explored: 14,000, #Frontier: 27,850, #Generated: 41,850, Time: 4.31 s 	[Used: 1252.89 MB, Free: 618.61 MB, Alloc: 1871.50 MB, MaxAlloc: 7118.50 MB]
+[Client said] #Explored: 15,000, #Frontier: 29,445, #Generated: 44,445, Time: 4.54 s 	[Used: 1429.97 MB, Free: 441.53 MB, Alloc: 1871.50 MB, MaxAlloc: 7118.50 MB]
+[Client said] #Explored: 16,000, #Frontier: 31,276, #Generated: 47,276, Time: 5.61 s 	[Used: 1345.87 MB, Free: 1312.13 MB, Alloc: 2658.00 MB, MaxAlloc: 7118.50 MB]
+[Client said] #Explored: 17,000, #Frontier: 32,901, #Generated: 49,901, Time: 5.86 s 	[Used: 1523.14 MB, Free: 1134.86 MB, Alloc: 2658.00 MB, MaxAlloc: 7118.50 MB]
+[Client said] #Explored: 18,000, #Frontier: 34,984, #Generated: 52,984, Time: 6.14 s 	[Used: 1718.13 MB, Free: 939.87 MB, Alloc: 2658.00 MB, MaxAlloc: 7118.50 MB]
+[Client said] #Explored: 19,000, #Frontier: 36,629, #Generated: 55,629, Time: 6.54 s 	[Used: 1647.15 MB, Free: 1165.35 MB, Alloc: 2812.50 MB, MaxAlloc: 7118.50 MB]
+[Client said] #Explored: 20,000, #Frontier: 37,682, #Generated: 57,682, Time: 6.80 s 	[Used: 1822.25 MB, Free: 990.25 MB, Alloc: 2812.50 MB, MaxAlloc: 7118.50 MB]
+[Client said] #Explored: 21,000, #Frontier: 38,953, #Generated: 59,953, Time: 7.04 s 	[Used: 1987.62 MB, Free: 824.88 MB, Alloc: 2812.50 MB, MaxAlloc: 7118.50 MB]
+[Client said] #Explored: 22,000, #Frontier: 40,067, #Generated: 62,067, Time: 7.36 s 	[Used: 1835.45 MB, Free: 1012.55 MB, Alloc: 2848.00 MB, MaxAlloc: 7118.50 MB]
+[Client said] #Explored: 23,000, #Frontier: 40,969, #Generated: 63,969, Time: 7.59 s 	[Used: 2000.90 MB, Free: 847.10 MB, Alloc: 2848.00 MB, MaxAlloc: 7118.50 MB]
+[Client said] #Explored: 24,000, #Frontier: 42,223, #Generated: 66,223, Time: 7.87 s 	[Used: 2176.08 MB, Free: 671.92 MB, Alloc: 2848.00 MB, MaxAlloc: 7118.50 MB]
+[Client said] #Explored: 25,000, #Frontier: 43,515, #Generated: 68,515, Time: 8.27 s 	[Used: 2039.51 MB, Free: 900.99 MB, Alloc: 2940.50 MB, MaxAlloc: 7118.50 MB]
+[Client said] #Explored: 26,000, #Frontier: 44,729, #Generated: 70,729, Time: 8.55 s 	[Used: 2214.56 MB, Free: 725.94 MB, Alloc: 2940.50 MB, MaxAlloc: 7118.50 MB]
+[Client said] #Explored: 27,000, #Frontier: 46,338, #Generated: 73,338, Time: 8.91 s 	[Used: 2091.59 MB, Free: 937.41 MB, Alloc: 3029.00 MB, MaxAlloc: 7118.50 MB]
+[Client said] 
+[Client said] Summary for Breadth-first Search
+[Client said] Found solution of length 8
+[Client said] #Explored: 27,726, #Frontier: 47,708, #Generated: 75,434, Time: 9.09 s 	[Used: 2217.85 MB, Free: 811.15 MB, Alloc: 3029.00 MB, MaxAlloc: 7118.50 MB]
+success
+
+* Runner completed
+  - Press enter to start over, Control+C to exit
+  - Modifications to level and client will be reflected when starting over
+^Cjonas@jonas-XPS-15-9550:~/git_private/AI-Graph-Search/searchclient_java$ java -jar ../server.jar -l ../levels/friendofDFS.lvl -c "java searchclient.SearchClient -dfs" -g 150 -t 300
+
+* Runner starting
+
+[Client said] SearchClient initializing. I am sending this using the error output stream.
+[Client said] Search starting with strategy Depth-first Search.
+[Client said] 
+[Client said] Summary for Depth-first Search
+[Client said] Found solution of length 24
+[Client said] #Explored:     24, #Frontier:    104, #Generated:    128, Time: 0.02 s 	[Used: 7.56 MB, Free: 473.94 MB, Alloc: 481.50 MB, MaxAlloc: 7118.50 MB]
+success
+
+* Runner completed
+  - Press enter to start over, Control+C to exit
+  - Modifications to level and client will be reflected when starting over
+
+
