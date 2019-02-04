@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class SearchClient {
+	public static Pitch pitch;
     public State initialState;
 
     public SearchClient(BufferedReader serverMessages) throws Exception {
@@ -16,15 +17,18 @@ public class SearchClient {
         }
 
         int row = 0;
+        int numberOfCols = 0;
         boolean agentFound = false;
         this.initialState = new State(null);
+        pitch = new Pitch();
 
         while (!line.equals("")) {
+        	numberOfCols = Math.max(numberOfCols, line.length());
             for (int col = 0; col < line.length(); col++) {
                 char chr = line.charAt(col);
 
                 if (chr == '+') { // Wall.
-                    this.initialState.walls[row][col] = true;
+                    pitch.walls[row][col] = true;
                 } else if ('0' <= chr && chr <= '9') { // Agent.
                     if (agentFound) {
                         System.err.println("Error, not a single agent level");
@@ -34,9 +38,9 @@ public class SearchClient {
                     this.initialState.agentRow = row;
                     this.initialState.agentCol = col;
                 } else if ('A' <= chr && chr <= 'Z') { // Box.
-                    this.initialState.boxes[row][col] = chr;
+                    pitch.initBoxes[row][col] = chr;
                 } else if ('a' <= chr && chr <= 'z') { // Goal.
-                    this.initialState.goals[row][col] = chr;
+                    pitch.goals[row][col] = chr;
                 } else if (chr == ' ') {
                     // Free space.
                 } else {
@@ -47,6 +51,8 @@ public class SearchClient {
             line = serverMessages.readLine();
             row++;
         }
+        pitch.setSize(row, numberOfCols);
+        initialState.boxes = pitch.initBoxes;
     }
 
     public ArrayList<State> Search(Strategy strategy) {
@@ -66,12 +72,12 @@ public class SearchClient {
 
             State leafState = strategy.getAndRemoveLeaf();
 
-            if (leafState.isGoalState()) {
+            if (leafState.isGoalState(pitch)) {
                 return leafState.extractPlan();
             }
 
             strategy.addToExplored(leafState);
-            for (State n : leafState.getExpandedStates()) { // The list of expanded states is shuffled randomly; see State.java.
+            for (State n : leafState.getExpandedStates(pitch)) { // The list of expanded states is shuffled randomly; see State.java.
                 if (!strategy.isExplored(n) && !strategy.inFrontier(n)) {
                     strategy.addToFrontier(n);
                 }
@@ -139,7 +145,7 @@ public class SearchClient {
                 String response = serverMessages.readLine();
                 if (response.contains("false")) {
                     System.err.format("Server responsed with %s to the inapplicable action: %s\n", response, act);
-                    System.err.format("%s was attempted in \n%s\n", act, n.toString());
+                    System.err.format("%s was attempted in \n%s\n", act, n.toString(pitch));
                     break;
                 }
             }

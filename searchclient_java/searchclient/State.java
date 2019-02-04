@@ -8,9 +8,6 @@ import java.util.Random;
 public class State {
     private static final Random RNG = new Random(1);
 
-    public static int MAX_ROW = 70;
-    public static int MAX_COL = 70;
-
     public int agentRow;
     public int agentCol;
 
@@ -22,11 +19,8 @@ public class State {
     // (Start in the top left corner, first go down, then go right)
     // E.g. this.walls[2] is an array of booleans having size MAX_COL.
     // this.walls[row][col] is true if there's a wall at (row, col)
-    //
-
-    public boolean[][] walls = new boolean[MAX_ROW][MAX_COL];
-    public char[][] boxes = new char[MAX_ROW][MAX_COL];
-    public char[][] goals = new char[MAX_ROW][MAX_COL];
+    
+    public char[][] boxes;
 
     public State parent;
     public Command action;
@@ -52,10 +46,10 @@ public class State {
         return this.parent == null;
     }
 
-    public boolean isGoalState() {
-        for (int row = 1; row < MAX_ROW - 1; row++) {
-            for (int col = 1; col < MAX_COL - 1; col++) {
-                char g = goals[row][col];
+    public boolean isGoalState(Pitch pitch) {
+        for (int row = 1; row < pitch.numberOfRows - 1; row++) {
+            for (int col = 1; col < pitch.numberOfCols - 1; col++) {
+                char g = pitch.goals[row][col];
                 char b = Character.toLowerCase(boxes[row][col]);
                 if (g > 0 && b != g) {
                     return false;
@@ -65,7 +59,7 @@ public class State {
         return true;
     }
 
-    public ArrayList<State> getExpandedStates() {
+    public ArrayList<State> getExpandedStates(Pitch pitch) {
         ArrayList<State> expandedStates = new ArrayList<>(Command.EVERY.length);
         for (Command c : Command.EVERY) {
             // Determine applicability of action
@@ -74,8 +68,8 @@ public class State {
 
             if (c.actionType == Command.Type.Move) {
                 // Check if there's a wall or box on the cell to which the agent is moving
-                if (this.cellIsFree(newAgentRow, newAgentCol)) {
-                    State n = this.ChildState();
+                if (this.cellIsFree(newAgentRow, newAgentCol, pitch)) {
+                    State n = this.ChildState(pitch);
                     n.action = c;
                     n.agentRow = newAgentRow;
                     n.agentCol = newAgentCol;
@@ -87,8 +81,8 @@ public class State {
                     int newBoxRow = newAgentRow + Command.dirToRowChange(c.dir2);
                     int newBoxCol = newAgentCol + Command.dirToColChange(c.dir2);
                     // .. and that new cell of box is free
-                    if (this.cellIsFree(newBoxRow, newBoxCol)) {
-                        State n = this.ChildState();
+                    if (this.cellIsFree(newBoxRow, newBoxCol, pitch)) {
+                        State n = this.ChildState(pitch);
                         n.action = c;
                         n.agentRow = newAgentRow;
                         n.agentCol = newAgentCol;
@@ -99,12 +93,12 @@ public class State {
                 }
             } else if (c.actionType == Command.Type.Pull) {
                 // Cell is free where agent is going
-                if (this.cellIsFree(newAgentRow, newAgentCol)) {
+                if (this.cellIsFree(newAgentRow, newAgentCol, pitch)) {
                     int boxRow = this.agentRow + Command.dirToRowChange(c.dir2);
                     int boxCol = this.agentCol + Command.dirToColChange(c.dir2);
                     // .. and there's a box in "dir2" of the agent
                     if (this.boxAt(boxRow, boxCol)) {
-                        State n = this.ChildState();
+                        State n = this.ChildState(pitch);
                         n.action = c;
                         n.agentRow = newAgentRow;
                         n.agentCol = newAgentCol;
@@ -119,20 +113,19 @@ public class State {
         return expandedStates;
     }
 
-    private boolean cellIsFree(int row, int col) {
-        return !this.walls[row][col] && this.boxes[row][col] == 0;
+    private boolean cellIsFree(int row, int col, Pitch pitch) {
+        return !pitch.walls[row][col] && this.boxes[row][col] == 0;
     }
 
     private boolean boxAt(int row, int col) {
         return this.boxes[row][col] > 0;
     }
 
-    private State ChildState() {
+    private State ChildState(Pitch pitch) {
         State copy = new State(this);
-        for (int row = 0; row < MAX_ROW; row++) {
-            System.arraycopy(this.walls[row], 0, copy.walls[row], 0, MAX_COL);
-            System.arraycopy(this.boxes[row], 0, copy.boxes[row], 0, MAX_COL);
-            System.arraycopy(this.goals[row], 0, copy.goals[row], 0, MAX_COL);
+        copy.boxes = new char[pitch.numberOfRows][pitch.numberOfCols];
+        for (int row = 0; row < pitch.numberOfRows; row++) {
+            System.arraycopy(this.boxes[row], 0, copy.boxes[row], 0, pitch.numberOfCols);
         }
         return copy;
     }
@@ -156,8 +149,6 @@ public class State {
             result = prime * result + this.agentCol;
             result = prime * result + this.agentRow;
             result = prime * result + Arrays.deepHashCode(this.boxes);
-            result = prime * result + Arrays.deepHashCode(this.goals);
-            result = prime * result + Arrays.deepHashCode(this.walls);
             this._hash = result;
         }
         return this._hash;
@@ -174,26 +165,21 @@ public class State {
         State other = (State) obj;
         if (this.agentRow != other.agentRow || this.agentCol != other.agentCol)
             return false;
-        if (!Arrays.deepEquals(this.boxes, other.boxes))
-            return false;
-        if (!Arrays.deepEquals(this.goals, other.goals))
-            return false;
-        return Arrays.deepEquals(this.walls, other.walls);
+        return Arrays.deepEquals(this.boxes, other.boxes);
     }
 
-    @Override
-    public String toString() {
+    public String toString(Pitch pitch) {
         StringBuilder s = new StringBuilder();
-        for (int row = 0; row < MAX_ROW; row++) {
-            if (!this.walls[row][0]) {
+        for (int row = 0; row < pitch.numberOfRows; row++) {
+            if (!pitch.walls[row][0]) {
                 break;
             }
-            for (int col = 0; col < MAX_COL; col++) {
+            for (int col = 0; col < pitch.numberOfCols; col++) {
                 if (this.boxes[row][col] > 0) {
                     s.append(this.boxes[row][col]);
-                } else if (this.goals[row][col] > 0) {
-                    s.append(this.goals[row][col]);
-                } else if (this.walls[row][col]) {
+                } else if (pitch.goals[row][col] > 0) {
+                    s.append(pitch.goals[row][col]);
+                } else if (pitch.walls[row][col]) {
                     s.append("+");
                 } else if (row == this.agentRow && col == this.agentCol) {
                     s.append("0");
