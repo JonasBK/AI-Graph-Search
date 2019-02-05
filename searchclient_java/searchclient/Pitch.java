@@ -7,23 +7,23 @@ public class Pitch {
     public char[][] initBoxes = new char[MAX_ROW][MAX_COL];
     public char[][] goals = new char[MAX_ROW][MAX_COL];
 	
-    public int numberOfRows;			
-    public int numberOfCols;
+    public int maxRow;			
+    public int maxCol;
 
     public Pitch() {
     	super();
     }
     
-	public void setSize(int numberOfRows, int numberOfCols) {
-		this.numberOfRows = numberOfRows;
-		this.numberOfCols = numberOfCols;
+	public void setSize(int maxRow, int maxCol) {
+		this.maxRow = maxRow;
+		this.maxCol = maxCol;
 
-	    boolean[][] newWalls = new boolean[numberOfRows][numberOfCols];
-	    char[][] newInitBoxes = new char[numberOfRows][numberOfCols];
-	    char[][] newGoals = new char[numberOfRows][numberOfCols];
+	    boolean[][] newWalls = new boolean[maxRow][maxCol];
+	    char[][] newInitBoxes = new char[maxRow][maxCol];
+	    char[][] newGoals = new char[maxRow][maxCol];
 		
-		for (int i = 0; i < numberOfRows; i++) {
-			for (int j = 0; j < numberOfCols; j++) {
+		for (int i = 0; i < maxRow; i++) {
+			for (int j = 0; j < maxCol; j++) {
 				newWalls[i][j] = walls[i][j];
 				newInitBoxes[i][j] = initBoxes[i][j];
 				newGoals[i][j] = goals[i][j];

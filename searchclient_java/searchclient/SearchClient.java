@@ -105,13 +105,13 @@ public class SearchClient {
                     strategy = new Strategy.StrategyDFS();
                     break;
                 case "-astar":
-                    strategy = new Strategy.StrategyBestFirst(new Heuristic.AStar(client.initialState));
+                    strategy = new Strategy.StrategyBestFirst(new Heuristic.AStar(client.initialState, pitch));
                     break;
                 case "-wastar":
-                    strategy = new Strategy.StrategyBestFirst(new Heuristic.WeightedAStar(client.initialState, 5));
+                    strategy = new Strategy.StrategyBestFirst(new Heuristic.WeightedAStar(client.initialState, pitch, 5));
                     break;
                 case "-greedy":
-                    strategy = new Strategy.StrategyBestFirst(new Heuristic.Greedy(client.initialState));
+                    strategy = new Strategy.StrategyBestFirst(new Heuristic.Greedy(client.initialState, pitch));
                     break;
                 default:
                     strategy = new Strategy.StrategyBFS();

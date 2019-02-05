@@ -47,8 +47,8 @@ public class State {
     }
 
     public boolean isGoalState(Pitch pitch) {
-        for (int row = 1; row < pitch.numberOfRows - 1; row++) {
-            for (int col = 1; col < pitch.numberOfCols - 1; col++) {
+        for (int row = 1; row < pitch.maxRow - 1; row++) {
+            for (int col = 1; col < pitch.maxCol - 1; col++) {
                 char g = pitch.goals[row][col];
                 char b = Character.toLowerCase(boxes[row][col]);
                 if (g > 0 && b != g) {
@@ -123,9 +123,9 @@ public class State {
 
     private State ChildState(Pitch pitch) {
         State copy = new State(this);
-        copy.boxes = new char[pitch.numberOfRows][pitch.numberOfCols];
-        for (int row = 0; row < pitch.numberOfRows; row++) {
-            System.arraycopy(this.boxes[row], 0, copy.boxes[row], 0, pitch.numberOfCols);
+        copy.boxes = new char[pitch.maxRow][pitch.maxCol];
+        for (int row = 0; row < pitch.maxRow; row++) {
+            System.arraycopy(this.boxes[row], 0, copy.boxes[row], 0, pitch.maxCol);
         }
         return copy;
     }
@@ -170,11 +170,11 @@ public class State {
 
     public String toString(Pitch pitch) {
         StringBuilder s = new StringBuilder();
-        for (int row = 0; row < pitch.numberOfRows; row++) {
+        for (int row = 0; row < pitch.maxRow; row++) {
             if (!pitch.walls[row][0]) {
                 break;
             }
-            for (int col = 0; col < pitch.numberOfCols; col++) {
+            for (int col = 0; col < pitch.maxCol; col++) {
                 if (this.boxes[row][col] > 0) {
                     s.append(this.boxes[row][col]);
                 } else if (pitch.goals[row][col] > 0) {
