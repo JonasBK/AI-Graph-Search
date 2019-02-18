@@ -55,11 +55,9 @@ public class Goal extends Box {
         		visited[(int) field.y][(int) field.x+1] = true;
         		queue.add(new Point2D.Float(field.x+1, field.y));
         		shortestPathLenght[(int) field.y][(int) field.x+1] = shortestPathLenght[(int) field.y][(int) field.x] + 1;	        	
-        	}
+        	}	
         }
         
-//        System.err.println("HERE COMES THE BLA!");
-//        
 //        for (int i = 0; i < pitchMaxRow; i++) {
 //        	for (int j = 0; j < pitchMaxCol; j++) {
 //        		if (walls[i][j]) {
